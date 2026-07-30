@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Happy Birthday Hamody</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700;900&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+}
+
+body{
+background:linear-gradient(135deg,#FFE8C8,#FFD3A3);
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+overflow:hidden;
+}
+
+.container,
+.page2{
+width:100%;
+padding:25px;
+text-align:center;
+}
+
+h1{
+font-size:58px;
+font-weight:900;
+line-height:1.1;
+color:#ff6b00;
+}
+
+.heart{
+color:#ff8c00;
+}
+
+.subtitle{
+margin-top:20px;
+font-size:22px;
+color:#555;
+}
+
+/* صورة القطة */
+
+.cat{
+display:block;
+width:min(260px,70vw);
+height:auto;
+margin:35px auto 0;
+cursor:pointer;
+transition:transform .35s ease;
+object-fit:contain;
+user-select:none;
+-webkit-user-drag:none;
+}
+
+.cat:hover{
+transform:scale(1.05);
+}
+
+.cat:active{
+transform:scale(.95);
+}
+
+/* الصفحة الثانية */
+
+.page2{
+display:none;
+}
+
+.page2 h2{
+font-size:42px;
+color:#ff6b00;
+margin-bottom:20px;
+}
+
+.page2 p{
+font-size:22px;
+line-height:1.8;
+color:#555;
+max-width:500px;
+margin:auto;
+}
+
+.page2 button{
+margin-top:40px;
+padding:16px 42px;
+border:none;
+border-radius:40px;
+background:#ff7a00;
+color:white;
+font-size:22px;
+cursor:pointer;
+transition:.3s;
+}
+
+.page2 button:hover{
+transform:scale(1.05);
+}
+
+@media(max-width:600px){
+
+h1{
+font-size:46px;
+}
+
+.subtitle{
+font-size:19px;
+}
+
+.page2 h2{
+font-size:34px;
+}
+
+.page2 p{
+font-size:19px;
+}
+
+.page2 button{
+font-size:20px;
+padding:15px 35px;
+}
+
+.cat{
+width:200px;
+}
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>
+Happy Birthday<br>
+Hamody <span class="heart">🧡</span>
+</h1>
+
+<p class="subtitle">
+Tap the cat to start
+</p>
+
+<img src="cat.png.jfif" class="cat" alt="Cute Cat">
+</div>
+
+<div class="page2">
+
+<h2>
+Before today starts... ✨
+</h2>
+
+<p>
+I made something especially for you.<br>
+I hope it makes you smile 🤍
+</p>
+
+<button>
+Continue →
+</button>
+
+</div>
+
+<script>
+
+const cat=document.querySelector(".cat");
+const page1=document.querySelector(".container");
+const page2=document.querySelector(".page2");
+
+cat.onclick=function(){
+
+page1.style.display="none";
+page2.style.display="block";
+
+}
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Catch Hamody</title>
+<style>
+body{margin:0;font-family:Arial,sans-serif;background:linear-gradient(135deg,#FFE9CC,#FFD7A8);overflow:hidden}
+h1,p{text-align:center}
+#msg{height:40px;text-align:center;color:#ff7300;font-weight:bold}
+#cat{position:absolute;width:min(180px,35vw);left:50%;top:55%;transform:translate(-50%,-50%);cursor:pointer;transition:.25s}
+#gallery{
+display:none;
+width:90%;
+max-width:900px;
+margin:20px auto;
+grid-template-columns:repeat(3,1fr);
+gap:15px;
+padding:15px;
+}#gallery img{
+width:100%;
+height:180px;
+object-fit:cover;
+border-radius:20px;
+transition:.3s;
+}
+@media(max-width:700px){#gallery{
+grid-template-columns:repeat(2,1fr);
+gap:12px;
+}#gallery img{
+height:150px;
+}
+
+}
+#continue{display:none;margin:20px auto;padding:12px 28px;border:none;border-radius:25px;background:#ff7300;color:#fff;font-size:18px}
+#viewer{
+display:none;
+position:fixed;
+inset:0;
+background:rgba(0,0,0,.75);
+justify-content:center;
+align-items:center;
+z-index:10;
+}#viewer img{
+max-width:90%;
+max-height:85%;
+border-radius:25px;
+}#gallery img{
+cursor:pointer;
+}
+</style>
+</head>
+<body>
+<h1>Catch Hamody!</h1>
+<p>Catch me if you can...</p>
+<div id="msg"></div>
+<img id="cat" src="runcat.png">
+<div id="gallery">
+<img src="photo1.png"><img src="photo2.png"><img src="photo3.png">
+<img src="photo4.png"><img src="photo5.png"><img src="photo6.png">
+<img src="photo7.png"><img src="photo8.png"><img src="photo9.png">
+</div>
+<button id="continue">Continue ❤️</button>
+<div id="viewer"><img id="bigImage"></div>
+<script>
+const cat=document.getElementById('cat');
+const msg=document.getElementById('msg');
+const g=document.getElementById('gallery');
+const btn=document.getElementById('continue');
+let i=0;
+const pos=[
+[50,55],[12,18],[78,18],[18,74],[78,74]
+];
+const t=["Too slow...","Not yet...","You're getting closer...","One more try..."];
+function place(n){
+cat.style.left=pos[n][0]+"%";
+cat.style.top=pos[n][1]+"%";
+}
+place(0);
+cat.addEventListener("pointerdown",e=>{
+e.preventDefault();
+if(i<4){
+msg.textContent=t[i];
+i++;
+place(i);
+}else{
+cat.style.transform="translate(-50%,-50%) scale(1.4)";msg.innerHTML="You caught me ❤️";setTimeout(function(){cat.style.opacity="0";
+
+},1200);
+setTimeout(function(){
+cat.style.display="none";
+document.querySelector("h1").style.display="none";
+document.querySelector("p").style.display="none";
+g.style.display="grid";
+[...g.children].forEach((im,k)=>{
+im.style.opacity=0;
+setTimeout(()=>im.style.opacity=1,k*150);
+});
+btn.style.display="block";
+},1800);
+}
+});
+const viewer=document.getElementById("viewer");const bigImage=document.getElementById("bigImage");const photos=document.querySelectorAll("#gallery img");photos.forEach(photo=>{photo.onclick=function(){bigImage.src=this.src;viewer.style.display="flex";
+
+}
+
+});viewer.onclick=function(){viewer.style.display="none";
+
+}
+</script>
+</body></html>

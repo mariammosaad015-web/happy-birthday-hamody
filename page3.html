@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Choose a Cat</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700;900&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+}
+
+body{
+
+background:linear-gradient(135deg,#FFE9CC,#FFD5A5);
+
+min-height:100vh;
+
+display:flex;
+
+justify-content:center;
+
+align-items:center;
+
+padding:30px;
+
+}
+
+.container{
+
+width:100%;
+
+max-width:1200px;
+
+text-align:center;
+
+}
+
+h1{
+
+color:#ff7300;
+
+font-size:55px;
+
+margin-bottom:10px;
+
+}
+
+.subtitle{
+
+font-size:22px;
+
+color:#555;
+
+margin-bottom:45px;
+
+}
+
+.cats{
+
+display:flex;
+
+justify-content:center;
+
+gap:35px;
+
+flex-wrap:wrap;
+
+}
+
+.cat{
+
+cursor:pointer;
+
+transition:.3s;
+
+}
+
+.cat:hover{
+
+transform:scale(1.05);
+
+}
+
+.cat img{
+
+width:280px;
+
+border-radius:25px;
+
+box-shadow:0 10px 25px rgba(0,0,0,.15);
+
+}
+
+#quiz{
+
+display:none;
+
+margin-top:40px;
+
+background:white;
+
+padding:35px;
+
+border-radius:30px;
+
+max-width:700px;
+
+margin-inline:auto;
+
+box-shadow:0 15px 30px rgba(0,0,0,.1);
+
+}
+
+#question{
+
+font-size:32px;
+
+color:#ff7300;
+
+margin-bottom:30px;
+
+}
+
+.answer{
+
+width:100%;
+
+padding:18px;
+
+margin:10px 0;
+
+border:none;
+
+border-radius:20px;
+
+font-size:20px;
+
+cursor:pointer;
+
+background:#FFE8CF;
+
+transition:.3s;
+
+}
+
+.answer:hover{
+
+background:#FFD199;
+
+}
+
+#result{
+
+margin-top:30px;
+
+font-size:24px;
+
+line-height:1.8;
+
+color:#444;
+
+}
+
+#result img{
+
+width:320px;
+
+margin-top:20px;
+
+border-radius:20px;
+
+}
+
+@media(max-width:700px){
+
+.cat img{
+
+width:220px;
+
+}
+
+h1{
+
+font-size:42px;
+
+}
+
+#question{
+
+font-size:25px;
+
+}
+
+.answer{
+
+font-size:18px;
+
+}
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>Choose a Cat 🐱</h1>
+
+<p class="subtitle">
+
+Each cat has a special question waiting for you.
+
+</p>
+
+<div class="cats">
+
+<div class="cat" onclick="openQuestion(1)">
+
+<img src="cat1.png">
+
+</div>
+
+<div class="cat" onclick="openQuestion(2)">
+
+<img src="cat2.png">
+
+</div>
+
+<div class="cat" onclick="openQuestion(3)">
+
+<img src="cat3.png">
+
+</div>
+
+</div>
+
+<div id="quiz">
+
+<h2 id="question"></h2>
+
+<div id="answers"></div>
+
+<div id="result"></div>
+
+</div><script>
+
+const data={
+
+1:{
+
+question:"What is Mariam's favorite color?",
+
+answers:["Yellow","Blue","Orange"],
+
+correct:2,
+
+message:`
+<p>
+
+بحب اللون البرتقاني من ساعة ما دخلت حياتي يا أحمد 🧡
+
+<br><br>
+
+وخليتني أحب البينك عشان شبهي 🩷
+
+</p>
+`
+
+},
+
+2:{
+
+question:"What was our first day talking?",
+
+answers:["25/3","25/8","25/10"],
+
+correct:0,
+
+message:`
+<p>
+
+اليوم الي حسيت روحي فيه لقت روحها وحبيبها ❤️
+
+<br><br>
+
+والي بصحى كل يوم بحمد ربنا انه دخل حياتي وخلى ليها طعم بوجوده بيها
+
+<br><br>
+
+ومش ندمانه ابدا على الفيرست ستيب يا ابو توتو 🤍
+
+</p>
+`
+
+},
+
+3:{
+
+question:"Which place do I repeat the most?",
+
+answers:["Israel","Cairo","Menoufia"],
+
+correct:2,
+
+message:`
+
+<h2 style="color:#ff7300;font-size:45px;">
+
+حمــــرا
+
+</h2>
+
+<img src="redcat.png">
+
+`
+
+}
+
+};
+let solved=[false,false,false];
+function openQuestion(num){
+
+document.getElementById("quiz").style.display="block";
+
+document.getElementById("question").innerHTML=data[num].question;
+
+document.getElementById("result").innerHTML="";
+
+const answers=document.getElementById("answers");
+
+answers.innerHTML="";
+
+data[num].answers.forEach((answer,index)=>{
+
+const button=document.createElement("button");
+
+button.className="answer";
+
+button.innerHTML=answer;
+
+button.onclick=function(){
+
+if(index==data[num].correct){
+
+solved[num-1]=true;
+
+document.querySelectorAll(".cat")[num-1].innerHTML=
+
+'<img src="cat'+num+'.png"><h2 style="color:green;margin-top:10px;">✔</h2>';
+
+document.getElementById("result").innerHTML=data[num].message;
+
+checkFinish();
+
+}
+
+else{
+
+document.getElementById("result").innerHTML=`
+
+<h2 style="color:#ff7300">
+
+يا خيبتك يا أقرع
+
+</h2>
+
+<img src="wrongcat.png">
+
+`;
+
+}
+
+};
+
+answers.appendChild(button);
+
+});
+
+}
+function checkFinish(){
+
+if(solved[0]&&solved[1]&&solved[2]){
+
+document.getElementById("result").innerHTML+=`
+
+<br><br>
+
+<button onclick="location.href='page4.html'"
+
+style="
+
+padding:18px 45px;
+
+font-size:22px;
+
+background:#ff7300;
+
+color:white;
+
+border:none;
+
+border-radius:50px;
+
+cursor:pointer;
+
+">
+
+Continue ❤️
+
+</button>
+
+`;
+
+}
+
+}
+</script>
+
+</body>
+
+</html>
