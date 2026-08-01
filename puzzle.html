@@ -18,31 +18,45 @@ font-family:Arial,sans-serif;
 }
 
 body{
+
 background:linear-gradient(135deg,#FFE9CC,#FFD7A8);
+
 min-height:100vh;
+
 display:flex;
+
 flex-direction:column;
+
 justify-content:center;
+
 align-items:center;
+
 overflow:hidden;
+
 }
 
 
 h1{
+
 color:#ff7300;
+
 margin-bottom:25px;
+
 text-align:center;
+
 }
 
 
 #board{
 
 width:min(420px,90vw);
+
 height:min(420px,90vw);
 
 display:grid;
 
 grid-template-columns:repeat(4,1fr);
+
 grid-template-rows:repeat(4,1fr);
 
 gap:3px;
@@ -56,6 +70,7 @@ border-radius:20px;
 box-shadow:0 10px 30px rgba(0,0,0,.2);
 
 }
+
 
 
 .piece{
@@ -73,11 +88,13 @@ transition:.2s;
 }
 
 
+
 .piece:hover{
 
 transform:scale(.96);
 
 }
+
 
 
 .selected{
@@ -161,6 +178,7 @@ object-fit:contain;
 }
 
 
+
 </style>
 
 </head>
@@ -169,7 +187,9 @@ object-fit:contain;
 <body>
 
 
-<h1>Complete the Puzzle 🧩</h1>
+<h1>
+Complete the Puzzle 🧩
+</h1>
 
 
 <div id="board"></div>
@@ -178,37 +198,53 @@ object-fit:contain;
 
 <div id="finish">
 
-<h2>You unlocked my last gift ❤️</h2>
+<h2>
+You unlocked my last gift ❤️
+</h2>
+
 
 <button id="play">
 Open it 🎁
 </button>
 
+
 </div>
 
 
 
-<video id="video" controls playsinline preload="auto">
+<div id="videoBox">
+
+
+<video id="video" controls playsinline>
 
 <source src="https://drive.google.com/uc?export=download&id=1j_b9iD3rvk9QC86mZY-aa7CAVavl9ZQ1" type="video/mp4">
 
 Your browser does not support video.
 
 </video>
+
+
 </div>
 
 
 
 <script>
 
+
 const board=document.getElementById("board");
+
 const finish=document.getElementById("finish");
+
 const play=document.getElementById("play");
+
 const videoBox=document.getElementById("videoBox");
+
 const video=document.getElementById("video");
 
 
+
 let pieces=[];
+
 
 
 for(let y=0;y<4;y++){
@@ -229,9 +265,11 @@ y:y
 
 
 
+
 do{
 
 pieces.sort(()=>Math.random()-0.5);
+
 
 }
 
@@ -240,6 +278,7 @@ while(
 pieces.every((piece,index)=>
 
 piece.x===index%4 &&
+
 piece.y===Math.floor(index/4)
 
 )
@@ -248,11 +287,14 @@ piece.y===Math.floor(index/4)
 
 
 
+
 let selected=null;
 
 
 
+
 function draw(){
+
 
 board.innerHTML="";
 
@@ -264,6 +306,7 @@ let div=document.createElement("div");
 
 
 div.className="piece";
+
 
 
 div.style.backgroundPosition=
@@ -282,24 +325,33 @@ div.classList.add("selected");
 
 div.onclick=function(){
 
+
 if(selected===null){
 
+
 selected=index;
+
 
 }
 
 else{
 
+
 swap(selected,index);
+
 
 selected=null;
 
+
 checkWin();
+
 
 }
 
 
+
 draw();
+
 
 };
 
@@ -308,20 +360,26 @@ draw();
 board.appendChild(div);
 
 
+
 });
+
 
 
 }
 
 
 
+
+
 function swap(a,b){
+
 
 let temp=pieces[a];
 
 pieces[a]=pieces[b];
 
 pieces[b]=temp;
+
 
 }
 
@@ -330,7 +388,9 @@ pieces[b]=temp;
 
 function checkWin(){
 
+
 let win=true;
+
 
 
 pieces.forEach((piece,index)=>{
@@ -344,7 +404,9 @@ piece.y!==Math.floor(index/4)
 
 ){
 
+
 win=false;
+
 
 }
 
@@ -352,11 +414,15 @@ win=false;
 });
 
 
+
 if(win){
+
 
 finish.style.display="block";
 
+
 }
+
 
 
 }
@@ -369,25 +435,37 @@ draw();
 
 
 
+
 play.onclick=function(){
+
 
 
 board.style.display="none";
 
+
 finish.style.display="none";
 
+
 document.querySelector("h1").style.display="none";
+
 
 
 videoBox.style.display="flex";
 
 
+
 video.currentTime=0;
 
-video.load();
 
 
-video.play();
+video.play().catch(function(error){
+
+
+console.log(error);
+
+
+});
+
 
 
 };
@@ -395,9 +473,13 @@ video.play();
 
 
 
+
+
 video.onended=function(){
 
+
 window.location.href="page6.html";
+
 
 };
 
