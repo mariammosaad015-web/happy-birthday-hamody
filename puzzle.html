@@ -18,45 +18,31 @@ font-family:Arial,sans-serif;
 }
 
 body{
-
 background:linear-gradient(135deg,#FFE9CC,#FFD7A8);
-
 min-height:100vh;
-
 display:flex;
-
 flex-direction:column;
-
 justify-content:center;
-
 align-items:center;
-
 overflow:hidden;
-
 }
 
 
 h1{
-
 color:#ff7300;
-
 margin-bottom:25px;
-
 text-align:center;
-
 }
 
 
 #board{
 
 width:min(420px,90vw);
-
 height:min(420px,90vw);
 
 display:grid;
 
 grid-template-columns:repeat(4,1fr);
-
 grid-template-rows:repeat(4,1fr);
 
 gap:3px;
@@ -101,6 +87,7 @@ outline:4px solid #ff7300;
 }
 
 
+
 #finish{
 
 display:none;
@@ -112,6 +99,7 @@ margin-top:25px;
 }
 
 
+
 #finish h2{
 
 color:#ff7300;
@@ -119,6 +107,7 @@ color:#ff7300;
 margin-bottom:20px;
 
 }
+
 
 
 button{
@@ -140,7 +129,8 @@ cursor:pointer;
 }
 
 
-#video{
+
+#videoBox{
 
 display:none;
 
@@ -148,15 +138,25 @@ position:fixed;
 
 inset:0;
 
+background:black;
+
+z-index:999;
+
+justify-content:center;
+
+align-items:center;
+
+}
+
+
+
+#video{
+
 width:100%;
 
 height:100%;
 
-object-fit:cover;
-
-background:black;
-
-z-index:999;
+object-fit:contain;
 
 }
 
@@ -169,19 +169,16 @@ z-index:999;
 <body>
 
 
-<h1>
-Complete the Puzzle 🧩
-</h1>
+<h1>Complete the Puzzle 🧩</h1>
 
 
 <div id="board"></div>
 
 
+
 <div id="finish">
 
-<h2>
-You unlocked my last gift ❤️
-</h2>
+<h2>You unlocked my last gift ❤️</h2>
 
 <button id="play">
 Open it 🎁
@@ -190,22 +187,26 @@ Open it 🎁
 </div>
 
 
-<video id="video" controls playsinline preload="auto">
+
+<div id="videoBox">
+
+<video id="video" controls playsinline>
 
 <source src="video.mp4" type="video/mp4">
 
-Your browser does not support video.
-
 </video>
+
+</div>
 
 
 
 <script>
 
-const board = document.getElementById("board");
-const finish = document.getElementById("finish");
-const play = document.getElementById("play");
-const video = document.getElementById("video");
+const board=document.getElementById("board");
+const finish=document.getElementById("finish");
+const play=document.getElementById("play");
+const videoBox=document.getElementById("videoBox");
+const video=document.getElementById("video");
 
 
 let pieces=[];
@@ -213,19 +214,21 @@ let pieces=[];
 
 for(let y=0;y<4;y++){
 
-    for(let x=0;x<4;x++){
+for(let x=0;x<4;x++){
 
-        pieces.push({
-            x:x,
-            y:y
-        });
+pieces.push({
 
-    }
+x:x,
+
+y:y
+
+});
+
+}
 
 }
 
 
-// خلط البازل
 
 do{
 
@@ -264,9 +267,6 @@ let div=document.createElement("div");
 div.className="piece";
 
 
-div.dataset.index=index;
-
-
 div.style.backgroundPosition=
 
 (piece.x*33.333)+"% "+(piece.y*33.333)+"%";
@@ -283,7 +283,24 @@ div.classList.add("selected");
 
 div.onclick=function(){
 
-selectPiece(index);
+if(selected===null){
+
+selected=index;
+
+}
+
+else{
+
+swap(selected,index);
+
+selected=null;
+
+checkWin();
+
+}
+
+
+draw();
 
 };
 
@@ -299,46 +316,6 @@ board.appendChild(div);
 
 
 
-function selectPiece(index){
-
-
-if(selected===null){
-
-selected=index;
-
-draw();
-
-return;
-
-}
-
-
-
-if(selected===index){
-
-selected=null;
-
-draw();
-
-return;
-
-}
-
-
-
-swap(selected,index);
-
-selected=null;
-
-draw();
-
-checkWin();
-
-
-}
-
-
-
 function swap(a,b){
 
 let temp=pieces[a];
@@ -348,6 +325,7 @@ pieces[a]=pieces[b];
 pieces[b]=temp;
 
 }
+
 
 
 
@@ -375,7 +353,6 @@ win=false;
 });
 
 
-
 if(win){
 
 finish.style.display="block";
@@ -392,7 +369,6 @@ draw();
 
 
 
-// تشغيل الفيديو
 
 play.onclick=function(){
 
@@ -404,24 +380,21 @@ finish.style.display="none";
 document.querySelector("h1").style.display="none";
 
 
-video.style.display="block";
+videoBox.style.display="flex";
 
 
+video.currentTime=0;
 
 video.load();
 
-video.play().catch(()=>{
 
-console.log("Video needs user interaction");
-
-});
+video.play();
 
 
 };
 
 
 
-// بعد الفيديو يروح للصفحة الأخيرة
 
 video.onended=function(){
 
