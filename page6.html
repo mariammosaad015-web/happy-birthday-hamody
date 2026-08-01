@@ -1,10 +1,249 @@
 <!DOCTYPE html>
-<html>
-<body style="background:#FFE9CC;text-align:center;padding-top:100px">
+<html lang="ar" dir="rtl">
 
-<h1 style="color:#ff7300">
-Happy Birthday ❤️🎂
-</h1>
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>The End ❤️</title>
+
+<style>
+
+@import url('https://fonts.googleapis.com/css2?family=Aref+Ruqaa:wght@400;700&display=swap');
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+
+body{
+
+height:100vh;
+background:#000;
+
+display:flex;
+justify-content:center;
+align-items:center;
+
+overflow:hidden;
+
+font-family:'Aref Ruqaa',serif;
+
+color:white;
+
+}
+
+
+#end{
+
+font-size:60px;
+opacity:0;
+
+transition:2s;
+
+}
+
+
+#letter{
+
+display:none;
+
+width:90%;
+max-width:700px;
+
+height:80vh;
+
+overflow:auto;
+
+text-align:center;
+
+font-size:32px;
+
+line-height:2;
+
+color:#ffe9cc;
+
+}
+
+
+#title{
+
+color:#ff7300;
+
+font-size:45px;
+
+margin-bottom:30px;
+
+}
+
+
+
+.show{
+
+opacity:1 !important;
+
+}
+
+
+.cursor{
+
+border-left:3px solid #ff7300;
+
+animation:blink .7s infinite;
+
+}
+
+
+@keyframes blink{
+
+50%{
+border-color:transparent;
+}
+
+}
+
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<div id="end">
+The End ❤️
+</div>
+
+
+
+<div id="letter">
+
+
+<div id="title">
+إلى أحمد ❤️
+</div>
+
+
+<div id="text"></div>
+
+
+</div>
+
+
+
+<script>
+
+
+let end=document.getElementById("end");
+
+let letter=document.getElementById("letter");
+
+let text=document.getElementById("text");
+
+
+let message=`
+
+بقالي أكتر من 10 أيام بتعلم إزاي أعمل الموقع ده...
+
+عشان يبقى ذكرى لينا.
+
+ذكرى نتفرج عليها لما نكبر ونفتكر الأيام دي.
+
+تفتكر يا أحمد هنكبر سوا فعلًا؟
+
+هيبقى عندنا بيت وعيلة وحياة خاصة بينا...
+
+إحنا بس.
+
+هنجيب بيت وانت عندك 25 سنة،
+ونعمله كله لونه برتقالي،
+وتكييف مركزي؟ ❤️
+
+ولا القدر هيكون ليه رأي تاني؟
+
+ويقرر يقسم الأحلام بتاعتنا على 2...
+
+وكل واحد يرجع لوحده تاني تايه؟
+
+اليوم أتممت عامك الـ22،
+أدام الله عليك الصحة والرضا والهدوء.
+
+ولو كان ليا الحظ إني أشاركك ذكرى أعياد ميلادك الجاية...
+
+هفكرك دايمًا بأحلامنا دلوقتي،
+في سن الـ22 والـ20.
+
+شكرًا إنك جنبي.
+
+وشكرًا إنك أحمد.
+
+أحمد بس ❤️
+
+
+"إلىٰ مَنْ يَطِيبُ بِهِ العُمْرُ،
+وتَسْكُنُ إِلَيْهِ الرُّوحُ...
+
+وإلى مَن علّمني الحب"
+
+`;
+
+
+setTimeout(()=>{
+
+end.classList.add("show");
+
+},500);
+
+
+
+setTimeout(()=>{
+
+end.classList.remove("show");
+
+
+},3500);
+
+
+
+setTimeout(()=>{
+
+end.style.display="none";
+
+letter.style.display="block";
+
+
+let i=0;
+
+
+function type(){
+
+if(i<message.length){
+
+text.innerHTML += message[i];
+
+i++;
+
+setTimeout(type,70);
+
+}
+
+}
+
+
+type();
+
+
+},4500);
+
+
+
+</script>
+
 
 </body>
+
 </html>
