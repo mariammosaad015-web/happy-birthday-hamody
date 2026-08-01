@@ -6,11 +6,12 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>The End ❤️</title>
+<title>The End 🧡</title>
 
 <style>
 
 @import url('https://fonts.googleapis.com/css2?family=Aref+Ruqaa:wght@400;700&display=swap');
+
 
 *{
 margin:0;
@@ -22,29 +23,39 @@ box-sizing:border-box;
 body{
 
 height:100vh;
+
 background:#000;
 
 display:flex;
+
 justify-content:center;
+
 align-items:center;
 
 overflow:hidden;
 
 font-family:'Aref Ruqaa',serif;
 
-color:white;
+color:#ffe9cc;
 
 }
+
 
 
 #end{
 
-font-size:60px;
+font-size:65px;
+
 opacity:0;
 
 transition:2s;
 
+color:white;
+
+text-align:center;
+
 }
+
 
 
 #letter{
@@ -52,30 +63,62 @@ transition:2s;
 display:none;
 
 width:90%;
-max-width:700px;
 
-height:80vh;
+max-width:750px;
 
-overflow:auto;
+height:85vh;
+
+overflow-y:auto;
 
 text-align:center;
 
-font-size:32px;
+padding:20px;
 
-line-height:2;
+font-size:30px;
+
+line-height:2.2;
 
 color:#ffe9cc;
 
 }
 
 
-#title{
 
-color:#ff7300;
+#title{
 
 font-size:45px;
 
-margin-bottom:30px;
+color:#ff7300;
+
+margin-bottom:35px;
+
+}
+
+
+
+#text{
+
+white-space:pre-line;
+
+}
+
+
+
+.cursor{
+
+border-left:3px solid #ff7300;
+
+}
+
+
+
+#love{
+
+margin-top:40px;
+
+font-size:45px;
+
+color:#ff7300;
 
 }
 
@@ -88,34 +131,18 @@ opacity:1 !important;
 }
 
 
-.cursor{
-
-border-left:3px solid #ff7300;
-
-animation:blink .7s infinite;
-
-}
-
-
-@keyframes blink{
-
-50%{
-border-color:transparent;
-}
-
-}
-
 
 </style>
 
 </head>
 
 
+
 <body>
 
 
 <div id="end">
-The End ❤️
+The End 🧡
 </div>
 
 
@@ -124,28 +151,37 @@ The End ❤️
 
 
 <div id="title">
-إلى أحمد ❤️
+إلى حبيبي مستر أحمد مجدي 🧡
 </div>
 
 
 <div id="text"></div>
 
 
+<div id="love">
+بحبك <span>♥</span>
 </div>
+
+
+
+</div>
+
+
 
 
 
 <script>
 
 
-let end=document.getElementById("end");
+const end=document.getElementById("end");
 
-let letter=document.getElementById("letter");
+const letter=document.getElementById("letter");
 
-let text=document.getElementById("text");
+const text=document.getElementById("text");
 
 
-let message=`
+
+const message=`
 
 بقالي أكتر من 10 أيام بتعلم إزاي أعمل الموقع ده...
 
@@ -161,18 +197,18 @@ let message=`
 
 هنجيب بيت وانت عندك 25 سنة،
 ونعمله كله لونه برتقالي،
-وتكييف مركزي؟ ❤️
+وتكييف مركزي؟ 🧡
 
 ولا القدر هيكون ليه رأي تاني؟
 
 ويقرر يقسم الأحلام بتاعتنا على 2...
 
-وكل واحد يرجع لوحده تاني تايه؟
+وكل واحد يرجع لوحده تاني تايه.
 
 اليوم أتممت عامك الـ22،
 أدام الله عليك الصحة والرضا والهدوء.
 
-ولو كان ليا الحظ إني أشاركك ذكرى أعياد ميلادك الجاية...
+ولو كان ليا الحظ إني أشاركك ذكرى أيام ميلادك الجاية...
 
 هفكرك دايمًا بأحلامنا دلوقتي،
 في سن الـ22 والـ20.
@@ -181,20 +217,22 @@ let message=`
 
 وشكرًا إنك أحمد.
 
-أحمد بس ❤️
+أحمد بس 🧡
 
 
 "إلىٰ مَنْ يَطِيبُ بِهِ العُمْرُ،
-وتَسْكُنُ إِلَيْهِ الرُّوحُ...
+وتَسْكُنُ إِلَيْهِ الرُّوحُ.
 
 وإلى مَن علّمني الحب"
+
 
 `;
 
 
+
 setTimeout(()=>{
 
-end.classList.add("show");
+end.style.opacity="1";
 
 },500);
 
@@ -202,7 +240,7 @@ end.classList.add("show");
 
 setTimeout(()=>{
 
-end.classList.remove("show");
+end.style.opacity="0";
 
 
 },3500);
@@ -211,30 +249,41 @@ end.classList.remove("show");
 
 setTimeout(()=>{
 
+
 end.style.display="none";
 
+
 letter.style.display="block";
+
 
 
 let i=0;
 
 
-function type(){
+function typing(){
 
-if(i<message.length){
 
-text.innerHTML += message[i];
+if(i < message.length){
+
+
+text.innerHTML += message.charAt(i);
+
 
 i++;
 
-setTimeout(type,70);
+
+setTimeout(typing,65);
+
 
 }
 
+
 }
 
 
-type();
+
+typing();
+
 
 
 },4500);
@@ -242,6 +291,7 @@ type();
 
 
 </script>
+
 
 
 </body>
