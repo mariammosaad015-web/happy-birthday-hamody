@@ -407,11 +407,14 @@ document.querySelector("h1").style.display="none";
 video.style.display="block";
 
 
+
 video.load();
 
+video.play().catch(()=>{
 
-video.play();
+console.log("Video needs user interaction");
 
+});
 
 
 };
