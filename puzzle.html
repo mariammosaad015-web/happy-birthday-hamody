@@ -197,3 +197,210 @@ Open it 🎁
 
 
 <script>
+const board = document.getElementById("board");
+const finish = document.getElementById("finish");
+const play = document.getElementById("play");
+const video = document.getElementById("video");
+
+let pieces = [];
+
+for(let y=0; y<4; y++){
+
+    for(let x=0; x<4; x++){
+
+        pieces.push({
+            x:x,
+            y:y
+        });
+
+    }
+
+}
+
+
+// خلط البازل
+
+do{
+
+pieces.sort(()=>Math.random()-0.5);
+
+}while(
+
+pieces.every((piece,index)=>
+
+piece.x === index%4 &&
+piece.y === Math.floor(index/4)
+
+)
+
+);
+
+
+let selected = null;
+
+
+function draw(){
+
+board.innerHTML="";
+
+
+pieces.forEach((piece,index)=>{
+
+
+const div=document.createElement("div");
+
+
+div.className="piece";
+
+
+div.dataset.index=index;
+
+
+div.style.backgroundPosition =
+
+(piece.x*33.333)+"% "+(piece.y*33.333)+"%";
+
+
+if(selected === index){
+
+div.classList.add("selected");
+
+}
+
+
+div.onclick=function(){
+
+selectPiece(index);
+
+};
+
+
+board.appendChild(div);
+
+
+});
+
+
+}
+
+
+
+function selectPiece(index){
+
+
+if(selected === null){
+
+selected=index;
+
+draw();
+
+return;
+
+}
+
+
+
+if(selected === index){
+
+selected=null;
+
+draw();
+
+return;
+
+}
+
+
+
+swap(selected,index);
+
+selected=null;
+
+draw();
+
+checkWin();
+
+
+}
+
+
+
+function swap(a,b){
+
+
+let temp=pieces[a];
+
+pieces[a]=pieces[b];
+
+pieces[b]=temp;
+
+
+}
+
+
+function checkWin(){
+
+
+let win=true;
+
+
+pieces.forEach((piece,index)=>{
+
+
+if(
+
+piece.x !== index%4 ||
+
+piece.y !== Math.floor(index/4)
+
+){
+
+win=false;
+
+}
+
+
+});
+
+
+if(win){
+
+finish.style.display="block";
+
+}
+
+
+}
+
+
+
+draw();// تشغيل الفيديو بعد حل البازل
+
+play.onclick=function(){
+
+board.style.display="none";
+
+finish.style.display="none";
+
+document.querySelector("h1").style.display="none";
+
+
+video.style.display="block";
+
+video.play();
+
+
+};
+
+
+// بعد انتهاء الفيديو يروح للصفحة الأخيرة
+
+video.onended=function(){
+
+window.location.href="page6.html";
+
+};</script>
+
+</body>
+
+</html>
