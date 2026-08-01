@@ -17,6 +17,7 @@ box-sizing:border-box;
 font-family:Arial,sans-serif;
 }
 
+
 body{
 
 background:linear-gradient(135deg,#FFE9CC,#FFD7A8);
@@ -72,7 +73,6 @@ box-shadow:0 10px 30px rgba(0,0,0,.2);
 }
 
 
-
 .piece{
 
 background-image:url("us.png");
@@ -81,12 +81,9 @@ background-size:400% 400%;
 
 cursor:pointer;
 
-border-radius:3px;
-
 transition:.2s;
 
 }
-
 
 
 .piece:hover{
@@ -96,13 +93,11 @@ transform:scale(.96);
 }
 
 
-
 .selected{
 
 outline:4px solid #ff7300;
 
 }
-
 
 
 #finish{
@@ -116,7 +111,6 @@ margin-top:25px;
 }
 
 
-
 #finish h2{
 
 color:#ff7300;
@@ -124,7 +118,6 @@ color:#ff7300;
 margin-bottom:20px;
 
 }
-
 
 
 button{
@@ -146,7 +139,6 @@ cursor:pointer;
 }
 
 
-
 #videoBox{
 
 display:none;
@@ -157,14 +149,9 @@ inset:0;
 
 background:black;
 
-z-index:999;
-
-justify-content:center;
-
-align-items:center;
+z-index:9999;
 
 }
-
 
 
 #video{
@@ -176,7 +163,6 @@ height:100%;
 object-fit:contain;
 
 }
-
 
 
 </style>
@@ -202,11 +188,9 @@ Complete the Puzzle 🧩
 You unlocked my last gift ❤️
 </h2>
 
-
 <button id="play">
 Open it 🎁
 </button>
-
 
 </div>
 
@@ -214,14 +198,9 @@ Open it 🎁
 
 <div id="videoBox">
 
-
 <video id="video" controls playsinline>
 
-<source src="https://res.cloudinary.com/nhv4yif8/video/upload/v1785623704/gift.mp4_tgabkc.mp4" type="video/mp4">
-Your browser does not support video.
-
 </video>
-
 
 </div>
 
@@ -242,8 +221,11 @@ const video=document.getElementById("video");
 
 
 
-let pieces=[];
+const videoURL="https://res.cloudinary.com/nhv4yif8/video/upload/v1785623704/gift.mp4_tgabkc.mp4";
 
+
+
+let pieces=[];
 
 
 for(let y=0;y<4;y++){
@@ -264,11 +246,9 @@ y:y
 
 
 
-
 do{
 
 pieces.sort(()=>Math.random()-0.5);
-
 
 }
 
@@ -286,14 +266,11 @@ piece.y===Math.floor(index/4)
 
 
 
-
 let selected=null;
 
 
 
-
 function draw(){
-
 
 board.innerHTML="";
 
@@ -305,7 +282,6 @@ let div=document.createElement("div");
 
 
 div.className="piece";
-
 
 
 div.style.backgroundPosition=
@@ -327,26 +303,19 @@ div.onclick=function(){
 
 if(selected===null){
 
-
 selected=index;
-
 
 }
 
 else{
 
-
 swap(selected,index);
-
 
 selected=null;
 
-
 checkWin();
 
-
 }
-
 
 
 draw();
@@ -355,13 +324,10 @@ draw();
 };
 
 
-
 board.appendChild(div);
 
 
-
 });
-
 
 
 }
@@ -369,16 +335,13 @@ board.appendChild(div);
 
 
 
-
 function swap(a,b){
-
 
 let temp=pieces[a];
 
 pieces[a]=pieces[b];
 
 pieces[b]=temp;
-
 
 }
 
@@ -387,9 +350,7 @@ pieces[b]=temp;
 
 function checkWin(){
 
-
 let win=true;
-
 
 
 pieces.forEach((piece,index)=>{
@@ -403,9 +364,7 @@ piece.y!==Math.floor(index/4)
 
 ){
 
-
 win=false;
-
 
 }
 
@@ -416,15 +375,13 @@ win=false;
 
 if(win){
 
-
 finish.style.display="block";
 
-
 }
 
 
-
 }
+
 
 
 
@@ -438,33 +395,23 @@ draw();
 play.onclick=function(){
 
 
-
 board.style.display="none";
 
-
 finish.style.display="none";
-
 
 document.querySelector("h1").style.display="none";
 
 
-
-videoBox.style.display="flex";
-
+videoBox.style.display="block";
 
 
-video.currentTime=0;
+video.src=videoURL;
 
 
-
-video.play().catch(function(error){
-
-
-console.log(error);
+video.load();
 
 
-});
-
+video.play();
 
 
 };
@@ -476,9 +423,7 @@ console.log(error);
 
 video.onended=function(){
 
-
 window.location.href="page6.html";
-
 
 };
 
