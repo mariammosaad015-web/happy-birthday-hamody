@@ -4,7 +4,6 @@
 <head>
 
 <meta charset="UTF-8">
-
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Our Puzzle ❤️</title>
@@ -155,6 +154,8 @@ height:100%;
 
 object-fit:cover;
 
+background:black;
+
 z-index:999;
 
 }
@@ -189,21 +190,28 @@ Open it 🎁
 </div>
 
 
-<video id="video" controls playsinline>
-<source src="رابط الفيديو الجديد" type="video/mp4">
+<video id="video" controls playsinline preload="metadata">
+
+<source src="gift.mp4" type="video/mp4">
+
 </video>
 
+
+
 <script>
+
 const board = document.getElementById("board");
 const finish = document.getElementById("finish");
 const play = document.getElementById("play");
 const video = document.getElementById("video");
 
-let pieces = [];
 
-for(let y=0; y<4; y++){
+let pieces=[];
 
-    for(let x=0; x<4; x++){
+
+for(let y=0;y<4;y++){
+
+    for(let x=0;x<4;x++){
 
         pieces.push({
             x:x,
@@ -221,19 +229,23 @@ do{
 
 pieces.sort(()=>Math.random()-0.5);
 
-}while(
+}
+
+while(
 
 pieces.every((piece,index)=>
 
-piece.x === index%4 &&
-piece.y === Math.floor(index/4)
+piece.x===index%4 &&
+piece.y===Math.floor(index/4)
 
 )
 
 );
 
 
-let selected = null;
+
+let selected=null;
+
 
 
 function draw(){
@@ -244,7 +256,7 @@ board.innerHTML="";
 pieces.forEach((piece,index)=>{
 
 
-const div=document.createElement("div");
+let div=document.createElement("div");
 
 
 div.className="piece";
@@ -253,16 +265,18 @@ div.className="piece";
 div.dataset.index=index;
 
 
-div.style.backgroundPosition =
+div.style.backgroundPosition=
 
 (piece.x*33.333)+"% "+(piece.y*33.333)+"%";
 
 
-if(selected === index){
+
+if(selected===index){
 
 div.classList.add("selected");
 
 }
+
 
 
 div.onclick=function(){
@@ -270,6 +284,7 @@ div.onclick=function(){
 selectPiece(index);
 
 };
+
 
 
 board.appendChild(div);
@@ -285,7 +300,7 @@ board.appendChild(div);
 function selectPiece(index){
 
 
-if(selected === null){
+if(selected===null){
 
 selected=index;
 
@@ -297,7 +312,7 @@ return;
 
 
 
-if(selected === index){
+if(selected===index){
 
 selected=null;
 
@@ -324,19 +339,17 @@ checkWin();
 
 function swap(a,b){
 
-
 let temp=pieces[a];
 
 pieces[a]=pieces[b];
 
 pieces[b]=temp;
 
-
 }
 
 
-function checkWin(){
 
+function checkWin(){
 
 let win=true;
 
@@ -346,9 +359,9 @@ pieces.forEach((piece,index)=>{
 
 if(
 
-piece.x !== index%4 ||
+piece.x!==index%4 ||
 
-piece.y !== Math.floor(index/4)
+piece.y!==Math.floor(index/4)
 
 ){
 
@@ -358,6 +371,7 @@ win=false;
 
 
 });
+
 
 
 if(win){
@@ -371,9 +385,15 @@ finish.style.display="block";
 
 
 
-draw();// تشغيل الفيديو بعد حل البازل
+
+draw();
+
+
+
+// تشغيل الفيديو
 
 play.onclick=function(){
+
 
 board.style.display="none";
 
@@ -384,19 +404,30 @@ document.querySelector("h1").style.display="none";
 
 video.style.display="block";
 
+
+video.load();
+
+
 video.play();
+
 
 
 };
 
 
-// بعد انتهاء الفيديو يروح للصفحة الأخيرة
+
+// بعد الفيديو يروح للصفحة الأخيرة
 
 video.onended=function(){
 
 window.location.href="page6.html";
 
-};</script>
+};
+
+
+
+</script>
+
 
 </body>
 
