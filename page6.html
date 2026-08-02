@@ -1,3 +1,20 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>❤️</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Aref+Ruqaa:wght@400;700&display=swap" rel="stylesheet">
+
+<style>
+
 *{
 margin:0;
 padding:0;
@@ -5,124 +22,106 @@ box-sizing:border-box;
 }
 
 body{
+
 background:#000;
 overflow:hidden;
 font-family:'Aref Ruqaa',serif;
-}
-
-/* ===============================
-   شاشة البداية
-=============================== */
-
-#intro{
-position:fixed;
-inset:0;
-background:#000;
 display:flex;
 justify-content:center;
 align-items:center;
-flex-direction:column;
-z-index:9999;
+height:100vh;
+
 }
 
-#intro1,#intro2{
-position:absolute;
-font-size:48px;
-color:#ffffff;
-opacity:0;
-transition:opacity 1.5s ease;
-text-align:center;
-padding:20px;
-}
+/* ==========================
+   شاشة البداية
+========================== */
 
-/* ===============================
-   الرسالة
-=============================== */
+#intro{
 
-#letter{
-
-display:none;
-
-position:absolute;
-
-left:50%;
-top:50%;
-
-transform:translate(-50%,-50%) scale(.92);
-
-opacity:0;
-
-width:min(900px,92vw);
-
-height:82vh;
-
+position:fixed;
+inset:0;
 background:#000;
 
-border:2px solid rgba(255,115,0,.25);
+display:flex;
+justify-content:center;
+align-items:center;
 
-border-radius:25px;
+z-index:9999;
 
-padding:45px;
+}
 
-box-shadow:0 15px 45px rgba(0,0,0,.45);
+#introText{
 
-overflow-y:auto;
-
+font-size:48px;
+color:#ffffff;
+text-align:center;
+opacity:0;
 transition:1.5s;
 
 }
 
-#letter.show{
+/* ==========================
+   الرسالة
+========================== */
 
-opacity:1;
+#messageBox{
 
-transform:translate(-50%,-50%) scale(1);
+display:none;
 
-}
+position:fixed;
 
-#letter h1{
+inset:0;
 
-text-align:center;
+padding:70px;
 
-font-size:42px;
+overflow:hidden;
 
-color:#ff7300;
+background:#000;
 
-margin-bottom:35px;
+color:#FFE9CC;
+
+font-size:31px;
+
+line-height:2.2;
+
+white-space:pre-wrap;
+
+opacity:0;
+
+transition:1.8s;
 
 }
 
 #message{
 
-font-size:30px;
+width:min(900px,92vw);
 
-line-height:2.15;
-
-color:#FFE9CC;
-
-white-space:pre-wrap;
+margin:auto;
 
 }
+
+/* ==========================
+   بحبك
+========================== */
 
 #love{
 
 display:none;
 
-margin-top:55px;
-
 text-align:center;
 
-font-size:44px;
+margin-top:70px;
+
+font-size:45px;
 
 color:#ff7300;
 
-letter-spacing:2px;
-
 }
 
-/* ===============================
+/* ==========================
    النهاية
-=============================== */
+========================== */
 
 #credits{
 
@@ -135,9 +134,7 @@ inset:0;
 background:#000;
 
 justify-content:center;
-
 align-items:center;
-
 flex-direction:column;
 
 opacity:0;
@@ -150,7 +147,7 @@ transition:2s;
 
 font-family:Arial;
 
-font-size:20px;
+font-size:22px;
 
 letter-spacing:8px;
 
@@ -162,220 +159,208 @@ margin-bottom:35px;
 
 #signature{
 
-width:250px;
-
-height:250px;
-
-display:flex;
-
-justify-content:center;
-
-align-items:center;
-
-}
-
-#signature img{
-
-width:100%;
+width:230px;
 
 opacity:0;
 
-transform:translateY(20px) scale(.95);
+transform:translateY(20px);
 
 transition:2s;
 
-filter:drop-shadow(0 0 15px rgba(255,115,0,.35));
-
 }
 
-/* ===============================
-   Scroll
-=============================== */
+/* Scroll */
 
 ::-webkit-scrollbar{
-
-width:8px;
-
+display:none;
 }
 
-::-webkit-scrollbar-thumb{
+</style>
 
-background:#ff7300;
+</head>
 
-border-radius:20px;
-
-}
-
-::-webkit-scrollbar-track{
-
-background:transparent;
-
-}<body>
+<body>
 
 <!-- شاشة البداية -->
 
 <div id="intro">
 
-    <div id="intro1">
-        قبل ما تقرأ...
-    </div>
-
-    <div id="intro2">
-        في حاجة أخيرة حابة أقولها لك.
-    </div>
+<div id="introText"></div>
 
 </div>
-
 
 <!-- الرسالة -->
 
-<div id="letter">
+<div id="messageBox">
 
-    <h1>
-        إلى حبيبي مستر أحمد مجدي 🧡
-    </h1>
+<div id="message"></div>
 
-    <div id="message"></div>
-
-    <div id="love"></div>
+<div id="love"></div>
 
 </div>
 
-
-<!-- شاشة النهاية -->
+<!-- النهاية -->
 
 <div id="credits">
 
-    <div id="made">
-        MADE BY
-    </div>
+<div id="made">
 
-    <div id="signature">
+MADE BY
 
-        <!-- بعدين هنحط صورة التوقيع هنا -->
-        <img id="signatureImg" src="signature.png" alt="Signature">
+</div>
 
-    </div>
+<img id="signature" src="" alt="Signature">
 
-</div>const intro = document.getElementById("intro");
-const intro1 = document.getElementById("intro1");
-const intro2 = document.getElementById("intro2");
+</div><script>
 
-const letter = document.getElementById("letter");
-const messageBox = document.getElementById("message");
+const intro=document.getElementById("intro");
+const introText=document.getElementById("introText");
 
-const love = document.getElementById("love");
+const messageBox=document.getElementById("messageBox");
+const message=document.getElementById("message");
 
-const credits = document.getElementById("credits");
-const signatureImg = document.getElementById("signatureImg");
+const love=document.getElementById("love");
 
-const message = `
+const credits=document.getElementById("credits");
+const signature=document.getElementById("signature");
+
+/* حطي هنا صورة التوقيع بعدين */
+signature.src="signature.png";
+
+/* الرسالة */
+
+const text=`إلى حبيبي مستر أحمد مجدي 🧡
 
 بقالي أكتر من 10 أيام بتعلم إزاي أعمل الموقع ده...
 
-عشان يبقى ذكرى لينا.
-
-ذكرى نتفرج عليها لما نكبر ونفتكر الأيام دي.
+عشان تبقى ذكرى لينا نتفرج عليها لما نكبر.
 
 تفتكر يا أحمد هنكبر سوا فعلًا؟
 
-هيبقى عندنا بيت وعيلة وحياة خاصة بينا...
+هيبقى عندنا بيت...
+
+وعيلة...
+
+وحياة خاصة بينا...
 
 إحنا بس.
 
-هنجيب بيت وانت عندك 25 سنة،
-ونعمله كله لونه برتقالي،
-وتكييف مركزي؟ 🧡
+هنجيب بيت وانت عندك 25 سنة...
 
-ولا القدر هيكون ليه رأي تاني؟
+ونعمله كله لونه برتقالي...
 
-ويقرر يقسم الأحلام بتاعتنا على 2...
+وتكييف مركزي؟
 
-وكل واحد يرجع لوحده تاني تايه.
+🧡
 
-اليوم أتممت عامك الـ22،
-أدام الله عليك بالصحة والرضا والهدوء.
+ولا القدر هيكون ليه رأي تاني...
 
-ولو كان ليا الحظ إني أشاركك ذكرى أيام ميلادك الجاية...
+ويقرر يقسم أحلامنا على اتنين...
 
-هفكرك دايمًا بأحلامنا دلوقتي،
+وكل واحد يرجع لوحده...
+
+تايه.
+
+اليوم أتممت عامك الـ22...
+
+أدام الله عليك الصحة...
+
+والرضا...
+
+والهدوء.
+
+ولو كان ليا الحظ إني أشاركك أعياد ميلادك الجاية...
+
+هفكرك دايمًا بأحلامنا...
+
 في سن الـ22 والـ20.
 
-شكراً إنك جنبي.
+شكرًا إنك جنبي.
 
-وشكراً إنك حبيبي مستر أحمد مجدي.
+وشكرًا إنك...
+
+حبيبي مستر أحمد مجدي.
 
 حبيبي مستر أحمد مجدي بس 🧡
 
 "إلىٰ مَنْ يَطِيبُ بِهِ العُمْرُ،
+
 وتَسْكُنُ إِلَيْهِ الرُّوحُ.
 
-وإلى مَن علّمني الحب."
+وإلى مَن علّمني الحب."`;
 
-`;
 
-/* ===========================
-   شاشة البداية
-=========================== */
+/* البداية */
 
-setTimeout(() => {
-    intro1.style.opacity = "1";
-}, 800);
+setTimeout(()=>{
 
-setTimeout(() => {
-    intro1.style.opacity = "0";
-}, 3000);
+introText.innerHTML="قبل ما تقرأ...";
+introText.style.opacity="1";
 
-setTimeout(() => {
-    intro2.style.opacity = "1";
-}, 4700);
+},800);
 
-setTimeout(() => {
-    intro2.style.opacity = "0";
-}, 7600);
 
-setTimeout(() => {
+setTimeout(()=>{
 
-    intro.style.display = "none";
+introText.style.opacity="0";
 
-    letter.style.display = "block";
+},3300);
 
-    setTimeout(() => {
 
-        letter.classList.add("show");
+setTimeout(()=>{
 
-        startTyping();
+introText.innerHTML="في حاجة أخيرة حابة أقولها لك.";
+introText.style.opacity="1";
 
-    }, 150);
+},5200);
 
-}, 8500);
 
-/* ===========================
-   كتابة الرسالة
-=========================== */
+setTimeout(()=>{
+
+introText.style.opacity="0";
+
+},8500);
+
+
+setTimeout(()=>{
+
+intro.style.display="none";
+
+messageBox.style.display="block";
+
+setTimeout(()=>{
+
+messageBox.style.opacity="1";
+startTyping();
+
+},200);
+
+},9800);
+
+
+/* كتابة الرسالة */
 
 function startTyping(){
 
-let i = 0;
+let i=0;
 
 function type(){
 
-if(i < message.length){
+if(i<text.length){
 
-messageBox.innerHTML += message.charAt(i);
+message.innerHTML+=text.charAt(i);
 
-letter.scrollTop = letter.scrollHeight;
+window.scrollTo(0,document.body.scrollHeight);
 
 i++;
 
-/* سرعة الكتابة */
-setTimeout(type,55);
+setTimeout(type,58);
 
 }
 
 else{
 
-setTimeout(writeLove,1000);
+setTimeout(writeLove,1200);
 
 }
 
@@ -385,57 +370,53 @@ type();
 
 }
 
-/* ===========================
-   كتابة بحبك
-=========================== */
+
+/* كتابة بحبك */
 
 function writeLove(){
 
 love.style.display="block";
 
-const txt="بحبك 🧡";
-
-let x=0;
-
 love.innerHTML="";
 
-function write(){
+const txt="بحبك 🧡";
 
-if(x<txt.length){
+let i=0;
 
-love.innerHTML += txt.charAt(x);
+function type(){
 
-x++;
+if(i<txt.length){
 
-setTimeout(write,250);
+love.innerHTML+=txt.charAt(i);
+
+i++;
+
+setTimeout(type,180);
 
 }
 
 else{
 
-setTimeout(showCredits,3500);
+setTimeout(showCredits,4000);
 
 }
 
 }
 
-write();
+type();
 
 }
 
-/* ===========================
-   شاشة النهاية
-=========================== */
+
+/* النهاية */
 
 function showCredits(){
 
-letter.style.opacity="0";
-
-letter.style.transform="translate(-50%,-50%) scale(.96)";
+messageBox.style.opacity="0";
 
 setTimeout(()=>{
 
-letter.style.display="none";
+messageBox.style.display="none";
 
 credits.style.display="flex";
 
@@ -443,12 +424,16 @@ setTimeout(()=>{
 
 credits.style.opacity="1";
 
-signatureImg.style.opacity="1";
-
-signatureImg.style.transform="translateY(0px) scale(1)";
+signature.style.opacity="1";
+signature.style.transform="translateY(0px)";
 
 },200);
 
 },1700);
 
 }
+
+</script>
+
+</body>
+</html>
