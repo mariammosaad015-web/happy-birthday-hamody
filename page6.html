@@ -1,101 +1,509 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>Last Page</title>
-<link href="https://fonts.googleapis.com/css2?family=Aref+Ruqaa:wght@400;700&display=swap" rel="stylesheet">
-<style>
-*{margin:0;padding:0;box-sizing:border-box}
-body{background:#000;color:#FFE9CC;font-family:'Aref Ruqaa',serif;overflow:hidden}
-#intro,#credits{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;flex-direction:column;background:#000}
-#introText{font-size:46px;color:#fff;opacity:0;transition:1.5s}
-#page{display:none;position:fixed;inset:0;overflow-y:auto;padding:60px}
-#content{max-width:900px;margin:auto;font-size:30px;line-height:2.15;white-space:pre-wrap}
-#title{font-size:42px;color:#ff7300;text-align:center;margin-bottom:35px}
-#love{text-align:center;color:#ff7300;font-size:44px;margin:60px 0;display:none}
-#credits{display:none;opacity:0;transition:2s}
-#made{font:20px Arial;color:#ff7300;letter-spacing:8px;margin-bottom:30px}
-#signature{width:220px;opacity:.95}
-::-webkit-scrollbar{width:8px}
-::-webkit-scrollbar-thumb{background:#ff7300;border-radius:20px}
-</style>
-</head>
-<body>
-<div id="intro"><div id="introText"></div></div>
-<div id="page"><div id="content"><div id="title">إلى حبيبي مستر أحمد مجدي 🧡</div><div id="msg"></div><div id="love"></div></div></div>
-<div id="credits"><div id="made">MADE BY</div><img id="signature" src="signature.png" alt="signature"></div>
-<script>
-const text=`بقالي أكتر من 10 أيام بتعلم إزاي أعمل الموقع ده...
 
-عشان تبقى ذكرى لينا نتفرج عليها لما نكبر.
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>🧡</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Aref+Ruqaa:wght@400;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+
+    background:#000;
+    color:#FFE9CC;
+    font-family:'Aref Ruqaa',serif;
+    overflow:hidden;
+
+}
+
+
+/* شاشة البداية */
+
+#intro{
+
+    position:fixed;
+    inset:0;
+    background:#000;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    z-index:10;
+
+}
+
+
+#introText{
+
+    color:white;
+    font-size:42px;
+    text-align:center;
+
+    opacity:0;
+
+    transition:1.5s ease;
+
+}
+
+
+
+/* الرسالة */
+
+#messageBox{
+
+    display:none;
+
+    position:fixed;
+
+    inset:0;
+
+    background:#000;
+
+    padding:45px 25px;
+
+    overflow-y:auto;
+
+    opacity:0;
+
+    transition:1.5s ease;
+
+}
+
+
+#message{
+
+    max-width:900px;
+
+    margin:auto;
+
+    font-size:30px;
+
+    line-height:2.4;
+
+    white-space:pre-wrap;
+
+    text-align:justify;
+
+}
+
+
+
+/* كلمة بحبك */
+
+#love{
+
+    display:none;
+
+    text-align:center;
+
+    margin-top:60px;
+
+    color:#ff7300;
+
+    font-size:45px;
+
+}
+
+
+
+/* شاشة النهاية */
+
+#credits{
+
+    display:none;
+
+    position:fixed;
+
+    inset:0;
+
+    background:#000;
+
+    justify-content:center;
+
+    align-items:center;
+
+    flex-direction:column;
+
+    opacity:0;
+
+    transition:2s ease;
+
+}
+
+
+#made{
+
+    font-family:Arial,sans-serif;
+
+    color:#ff7300;
+
+    font-size:20px;
+
+    letter-spacing:7px;
+
+    margin-bottom:35px;
+
+}
+
+
+#signature{
+
+    width:220px;
+
+    opacity:0;
+
+    transform:translateY(20px);
+
+    transition:2s;
+
+}
+
+
+
+/* موبايل */
+
+@media(max-width:768px){
+
+#introText{
+
+    font-size:32px;
+
+}
+
+
+#messageBox{
+
+    padding:30px 18px;
+
+}
+
+
+#message{
+
+    font-size:21px;
+
+    line-height:2.3;
+
+}
+
+
+#love{
+
+    font-size:35px;
+
+}
+
+
+#signature{
+
+    width:160px;
+
+}
+
+}
+
+
+</style>
+
+</head>
+
+<body>
+
+
+<div id="intro">
+
+<div id="introText"></div>
+
+</div>
+
+
+<div id="messageBox">
+
+<div id="message"></div>
+
+<div id="love"></div>
+
+</div>
+
+
+<div id="credits">
+
+<div id="made">
+MADE BY
+</div>
+
+
+<img id="signature" src="signature.png" alt="signature">
+
+
+</div><script>
+
+const intro = document.getElementById("intro");
+const introText = document.getElementById("introText");
+
+const messageBox = document.getElementById("messageBox");
+const message = document.getElementById("message");
+
+const love = document.getElementById("love");
+
+const credits = document.getElementById("credits");
+const signature = document.getElementById("signature");
+
+
+
+const text = `إلى حبيبي مستر أحمد مجدي 🧡
+
+بقالي أكتر من 10 أيام بتعلم إزاي أعمل الموقع ده
+
+عشان تبقى ذكرى لينا نتفرج عليها لما نكبر، ونفتكر الأيام دي
 
 تفتكر يا أحمد هنكبر سوا فعلًا؟
 
-هيبقى عندنا بيت...
-وعيلة...
-وحياة خاصة بينا...
-إحنا بس.
+هيبقى عندنا بيت، وعيلة، وحياة خاصة بينا
 
-هنجيب بيت وانت عندك 25 سنة...
-ونعمله كله لونه برتقالي...
-وتكييف مركزي؟ 🧡
+إحنا بس
 
-ولا القدر هيكون ليه رأي تاني...
-ويقرر يقسم أحلامنا على اتنين...
-وكل واحد يرجع لوحده...
-تايه.
+هنجيب بيت وانت عندك 25 سنة
 
-اليوم أتممت عامك الـ22...
-أدام الله عليك الصحة...
-والرضا...
-والهدوء.
+ونعمله كله لونه برتقالي
 
-ولو كان ليا الحظ إني أشاركك أعياد ميلادك الجاية...
-هفكرك دايمًا بأحلامنا...
-في سن الـ22 والـ20.
+وتكييف مركزي 🧡
 
-شكراً إنك جنبي.
-وشكراً إنك...
-حبيبي  أحمد .
-حبيبي  أحمد  بس 🧡
+ولا القدر هيكون ليه رأي تاني
+
+ويقرر يقسم أحلامنا على اتنين
+
+وكل واحد يرجع لوحده
+
+تايه
+
+اليوم أتممت عامك الـ22
+
+أدام الله عليك الصحة والرضا والهدوء
+
+ولو كان ليا الحظ إني أشاركك أعياد ميلادك الجاية
+
+هفكرك دايمًا بأحلامنا
+
+في سن الـ22 والـ20
+
+شكراً إنك جنبي
+
+وشكراً إنك أحمد
+
+أحمد بس 🧡
+
 
 "إلىٰ مَنْ يَطِيبُ بِهِ العُمْرُ،
-وتَسْكُنُ إِلَيْهِ الرُّوحُ.
-وإلى مَن علّمني الحب."`;
+وتَسْكُنُ إِلَيْهِ الرُّوحُ"
 
-const intro=document.getElementById('introText');
-setTimeout(()=>{intro.textContent='قبل ما تقرأ...';intro.style.opacity=1;},700);
-setTimeout(()=>intro.style.opacity=0,3200);
-setTimeout(()=>{intro.textContent='في حاجة أخيرة حابة أقولها لك.';intro.style.opacity=1;},5000);
-setTimeout(()=>intro.style.opacity=0,8300);
+وإلى مَن علّمني الحُب`;
+
+
+
+/* بداية الشاشة */
+
 setTimeout(()=>{
-document.getElementById('intro').style.display='none';
-document.getElementById('page').style.display='block';
+
+introText.innerHTML="قبل ما تقرأ...";
+
+introText.style.opacity="1";
+
+},800);
+
+
+
+setTimeout(()=>{
+
+introText.style.opacity="0";
+
+},3000);
+
+
+
+setTimeout(()=>{
+
+introText.innerHTML="في حاجة أخيرة حابة أقولها لك.";
+
+introText.style.opacity="1";
+
+},4700);
+
+
+
+setTimeout(()=>{
+
+introText.style.opacity="0";
+
+},7600);
+
+
+
+/* ظهور الرسالة */
+
+setTimeout(()=>{
+
+intro.style.display="none";
+
+messageBox.style.display="block";
+
+
+setTimeout(()=>{
+
+messageBox.style.opacity="1";
+
+startTyping();
+
+
+},300);
+
+
+},8500);
+
+
+
+
+/* كتابة الرسالة */
+
+function startTyping(){
+
 let i=0;
+
+
 function type(){
- if(i<text.length){
-   document.getElementById('msg').textContent+=text[i++];
-   document.getElementById('page').scrollTop=document.getElementById('page').scrollHeight;
-   setTimeout(type,55);
- }else{
-   setTimeout(love,1200);
- }
+
+if(i < text.length){
+
+
+message.innerHTML += text.charAt(i);
+
+
+messageBox.scrollTop = messageBox.scrollHeight;
+
+
+i++;
+
+
+setTimeout(type,55);
+
+
 }
+
+else{
+
+
+setTimeout(writeLove,1000);
+
+
+}
+
+
+}
+
+
 type();
-},9800);
-function love(){
-const t="بحبك 🧡"; let i=0; let e=document.getElementById('love'); e.style.display='block';
-(function w(){ if(i<t.length){e.textContent+=t[i++]; setTimeout(w,180);} else setTimeout(end,4000);})();
+
+
+}function writeLove(){
+
+love.style.display="block";
+
+let txt="بحبك 🧡";
+
+let i=0;
+
+
+function typeLove(){
+
+
+if(i < txt.length){
+
+
+love.innerHTML += txt.charAt(i);
+
+
+i++;
+
+
+setTimeout(typeLove,180);
+
+
 }
-function end(){
-document.getElementById('page').style.opacity=0;
+
+else{
+
+
+setTimeout(showCredits,3000);
+
+
+}
+
+
+}
+
+
+typeLove();
+
+
+}
+
+
+
+
+/* النهاية */
+
+function showCredits(){
+
+
+messageBox.style.opacity="0";
+
+
 setTimeout(()=>{
-document.getElementById('page').style.display='none';
-let c=document.getElementById('credits');
-c.style.display='flex';
-setTimeout(()=>c.style.opacity=1,100);
-},1700);
+
+
+messageBox.style.display="none";
+
+
+credits.style.display="flex";
+
+
+setTimeout(()=>{
+
+
+credits.style.opacity="1";
+
+
+signature.style.opacity="1";
+
+
+signature.style.transform="translateY(0)";
+
+
+},200);
+
+
+
+},1500);
+
+
+
 }
+
+
 </script>
-</body></html>
+
+</body>
+
+</html>
